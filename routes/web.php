@@ -11,6 +11,7 @@ use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\User\EventController as UserEventController;
 use App\Http\Controllers\User\OrderController;
+use App\Http\Controllers\Admin\LokasiController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -19,7 +20,7 @@ Route::get('/events/{event}', [UserEventController::class, 'show'])->name('event
 
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
-Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+Route::post('/orders', action: [OrderController::class, 'store'])->name('orders.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -37,6 +38,9 @@ Route::middleware('auth')->group(function () {
 
         // Tiket Management 
         Route::resource('tickets', TiketController::class);
+
+        // Lokasi Management
+        Route::resource('lokasis', LokasiController::class);
         
         // Histories
         Route::get('/histories', [HistoriesController::class, 'index'])->name('histories.index');

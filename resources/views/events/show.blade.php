@@ -15,10 +15,15 @@
       <div class="lg:col-span-2">
         <div class="card bg-base-100 shadow">
           <figure>
-            <img src="{{ $event->gambar
-      ? asset('storage/' . $event->gambar)
-      : 'https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp'
-  }}" alt="{{ $event->judul }}" class="w-full h-96 object-cover" />
+            <img 
+  src="{{ $event->gambar 
+    ? asset('images/events/' . $event->gambar)
+    : 'https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp'
+  }}"
+  class="w-full h-96 object-cover"
+  alt="{{ $event->judul }}"
+>
+
           </figure>
           <div class="card-body">
             <div class="flex justify-between items-start gap-4">
@@ -26,7 +31,7 @@
                 <h1 class="text-3xl font-extrabold">{{ $event->judul }}</h1>
                 <p class="text-sm text-gray-500 mt-1">
                   {{ \Carbon\Carbon::parse($event->tanggal_waktu)->locale('id')->translatedFormat('d F Y, H:i') }} • 📍
-                  {{ $event->lokasi }}
+                  {{ $event->lokasi->nama_lokasi }}
                 </p>
 
                 <div class="mt-3 flex gap-2 items-center">
